@@ -1,0 +1,5 @@
+﻿@model dynamic
+
+<a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
+    @Model.TotalPrice <i class="fa-solid fa-cart-shopping"></i> (@Model.ItemCount)
+</a>

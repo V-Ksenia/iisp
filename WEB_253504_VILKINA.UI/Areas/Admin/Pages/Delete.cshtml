@@ -1,0 +1,36 @@
+﻿@page
+@model WEB_253504_VILKINA.UI.Areas.Admin.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Delete</h1>
+
+<div>
+    <h4>Jewelry</h4>
+    <hr />
+    <dl class="row">
+        <td>
+            <img src="@Model.Jewelrys.Image" class="card-img-top" style="object-fit: contain; height: 250px;" alt="med">
+        </td>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Jewelrys.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Jewelrys.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Jewelrys.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Jewelrys.Price)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Jewelrys.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

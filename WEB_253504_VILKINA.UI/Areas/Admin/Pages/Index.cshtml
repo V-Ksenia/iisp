@@ -1,0 +1,54 @@
+﻿@page
+@model WEB_253504_VILKINA.UI.Areas.Admin.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Add jewelry</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jewelry[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jewelry[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jewelry[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jewelry[0].Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Jewelry) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)$
+            </td>
+            <td>
+                <img src="@item.Image" class="card-img-top" style="object-fit: contain; height: 150px;" alt="jewelry">
+            </td>          
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount) available
+            </td>           
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

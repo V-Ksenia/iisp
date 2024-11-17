@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewData["Message"] = "Лабораторная работа №2";
+
+}
+
+        <br />
+
+
+        <h2>@ViewData["Message"]</h2>
+
+
+
+        <hr />
+        <h3>List</h3>
+        <ol type="1" class="mb-4">
+            @for (int i = 1; i <= 3; i++)
+            {
+                <li>List element @i</li>
+            }
+        </ol>
+        <hr />
+        <h3>Form</h3>
+
+        <form method="post" class="mb-4">
+            <div class="mb-4">
+                <label for="selectList" class="form-label">Choose element:</label>
+                <select asp-items="ViewBag.SelectList" class="form-select" id="selectList" name="selectList"></select>
+            </div>
+            <div class="form-check mb-2 ms-3">
+                <input class="form-check-input" type="checkbox" name="checkbox1" id="checkbox1" value="1">
+                <label class="form-check-label" for="checkbox1">
+                    Checkbox 1
+                </label>
+            </div>
+            <div class="form-check mb-2 ms-3">
+                <input class="form-check-input" type="checkbox" name="checkbox2" id="checkbox2" value="2">
+                <label class="form-check-label" for="checkbox2">
+                    Checkbox 2
+                </label>
+            </div>
+            <div class="form-check mb-4 ms-3">
+                <input class="form-check-input" type="checkbox" name="checkbox3" id="checkbox3" value="3">
+                <label class="form-check-label" for="checkbox3">
+                    Checkbox 3
+                </label>
+            </div>
+
+            <div class="form-check mb-2 ms-3">
+                <input class="form-check-input" type="radio" name="radioOption" id="radio1" value="1">
+                <label class="form-check-label" for="radio1">
+                    Radio 1
+                </label>
+            </div>
+            <div class="form-check mb-2 ms-3">
+                <input class="form-check-input" type="radio" name="radioOption" id="radio2" value="2">
+                <label class="form-check-label" for="radio2">
+                    Radio 2
+                </label>
+            </div>
+            <div class="form-check mb-4 ms-3">
+                <input class="form-check-input" type="radio" name="radioOption" id="radio3" value="3">
+                <label class="form-check-label" for="radio3">
+                    Radio 3
+                </label>
+            </div>
+            <div class="mb-3 ms-3">
+                <label for="inputText1" class="form-label">Login</label>
+                <input type="text" class="form-control" id="inputText1" name="inputText1">
+            </div>
+            <div class="mb-3 ms-3">
+                <label for="inputText2" class="form-label">Password</label>
+                <input type="text" class="form-control" id="inputText2" name="inputText2">
+            </div>
+            <button type="submit" class="btn btn-primary ms-3">Submit</button>
+        </form>
+   
+ 
