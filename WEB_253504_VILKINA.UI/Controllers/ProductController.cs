@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using WEB_253504_VILKINA.DOMAIN.Entities;
+using WEB_253504_VILKINA.UI.Extensions;
 using WEB_253504_VILKINA.UI.Services.CategoryService;
 using WEB_253504_VILKINA.UI.Services.JewelryService;
 
@@ -32,6 +33,11 @@ namespace WEB_253504_VILKINA.UI.Controllers
 
             ViewData["Categories"] = allCategories.Data;
             ViewData["CurrentCategory"] = currentCategory;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_MedicineListPartial", productResponse.Data);
+            }
 
             return View(productResponse.Data);
         }
