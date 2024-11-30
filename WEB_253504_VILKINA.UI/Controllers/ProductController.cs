@@ -7,6 +7,7 @@ using WEB_253504_VILKINA.UI.Services.JewelryService;
 
 namespace WEB_253504_VILKINA.UI.Controllers
 {
+    [Route("Catalog")]
     public class ProductController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -16,6 +17,10 @@ namespace WEB_253504_VILKINA.UI.Controllers
             _categoryService = categoryService;
             _jewelryService = jewelryService;
         }
+
+        [HttpGet("")]
+        [HttpGet("{category}")]
+        [HttpGet("{category?}/Page_{pageNo:int}")]
         public async Task<IActionResult> Index(string? category, int pageNo = 1)
         {
             var productResponse =await _jewelryService.GetProductListAsync(category, pageNo);
@@ -36,7 +41,7 @@ namespace WEB_253504_VILKINA.UI.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_MedicineListPartial", productResponse.Data);
+                return PartialView("_ProductPartial", productResponse.Data);
             }
 
             return View(productResponse.Data);

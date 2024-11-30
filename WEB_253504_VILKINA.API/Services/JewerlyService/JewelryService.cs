@@ -9,10 +9,12 @@ namespace WEB_253504_VILKINA.API.Services.JewerlyService
 	{
 		private readonly int _maxPageSize = 20;
 		private readonly AppDbContext _context;
-		public JewelryService(AppDbContext context)
+        private readonly ILogger _logger;
+        public JewelryService(AppDbContext context, ILogger<JewelryService> logger)
 		{
 			_context = context;
-		}
+            _logger = logger;
+        }
 
 		public async Task<ResponseData<Jewelry>> CreateProductAsync(Jewelry jewelry)
 		{

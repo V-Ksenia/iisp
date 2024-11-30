@@ -1,4 +1,4 @@
-﻿﻿@await Component.InvokeAsync("Cart")
+﻿
 
 @{
     string name = "User";
@@ -15,6 +15,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    @await Component.InvokeAsync("CartComp")
     <div class="dropdown ms-4 nav-color">
         <button class="btn btn-secondary dropdown-toggle"
                 type="button" id="dropdownMenuButton"

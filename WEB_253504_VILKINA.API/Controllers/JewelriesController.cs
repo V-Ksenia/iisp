@@ -40,7 +40,6 @@ namespace WEB_253504_VILKINA.API.Controllers
 
         // GET: api/Jewelries/5
         [HttpGet("{id:int}")]
-        [Authorize(Policy = "admin")]
         public async Task<ActionResult<Jewelry>> GetJewelry(int id)
         {
             var jewResponse = await _jewelryService.GetProductByIdAsync(id);

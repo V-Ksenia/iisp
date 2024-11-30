@@ -85,11 +85,18 @@ namespace WEB_253504_VILKINA.UI.TagHelpers
             // Условия для URL в зависимости от режима (admin или обычный)
             if (IsAdmin)
             {
-                return $"/Admin/Index?pageNo={pageNumber}"; // Прямой URL
+                return $"/Admin/Index?pageNo={pageNumber}"; 
             }
             else
             {
-                return _linkGenerator.GetPathByPage(httpContext, "/Category/Index", values: new { pageNo = pageNumber, category = Category });
+                var routeValues = new { category = Category, pageNo = pageNumber };
+
+                return _linkGenerator.GetPathByAction(
+                    httpContext,
+                    action: "Index",
+                    controller: "Product",
+                    values: routeValues
+                );
             }
         }
     }
