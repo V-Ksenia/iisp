@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Serilog;
 using WEB_253504_VILKINA.DOMAIN.Models;
 using WEB_253504_VILKINA.UI;
 using WEB_253504_VILKINA.UI.Authorization;
 using WEB_253504_VILKINA.UI.Extensions;
 using WEB_253504_VILKINA.UI.HelperClasses;
+using WEB_253504_VILKINA.UI.Middleware;
 using WEB_253504_VILKINA.UI.Services.CartService;
 using WEB_253504_VILKINA.UI.Services.CategoryService;
 using WEB_253504_VILKINA.UI.Services.JewelryService;
@@ -15,6 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var uriData = builder.Configuration.GetSection("UriData").Get<UriData>()!;
 
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Host.UseSerilog();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
@@ -93,6 +100,10 @@ if (!app.Environment.IsDevelopment())
         app.UseExceptionHandler("/Home/Error");
         app.UseHsts();
    }
+
+app.UseMiddleware<LoggingMiddleware>();
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

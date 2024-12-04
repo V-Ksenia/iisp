@@ -1,0 +1,17 @@
+﻿@namespace WEB_253504_VILKINA.BLAZORWASM.Components
+@using WEB_253504_VILKINA.DOMAIN.Entities
+
+@if (SelectedJewelry != null)
+{
+    <div>
+        <h3>@SelectedJewelry.Description</h3>
+        <img src="@SelectedJewelry.Image" alt="Image" style="max-width: 300px; max-height: 300px; object-fit: contain;" />
+        <p>@(SelectedJewelry.Amount) available</p>
+        <p>Price: @SelectedJewelry.Price $</p>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Jewelry? SelectedJewelry { get; set; }
+}
